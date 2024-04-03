@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Cart from './Cart.tsx';
+import Cart from "./Cart.tsx";
+import { useCustomSelector } from "../hooks/index.ts";
 
 export default function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
+  const { items } = useCustomSelector((state) => state.cart);
 
   function handleOpenCartClick() {
     setCartIsVisible(true);
@@ -22,7 +24,7 @@ export default function Header() {
           <h1>Elegant Redux</h1>
         </div>
         <p>
-          <button onClick={handleOpenCartClick}>Cart (0)</button>
+          <button onClick={handleOpenCartClick}>Cart ({items.length})</button>
         </p>
       </header>
     </>
