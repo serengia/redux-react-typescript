@@ -7,6 +7,9 @@ export default function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
   const { items } = useCustomSelector((state) => state.cart);
 
+  const itemsQuantity =
+    items?.reduce((val, item) => val + item.quantity, 0) || 0;
+
   function handleOpenCartClick() {
     setCartIsVisible(true);
   }
@@ -24,7 +27,7 @@ export default function Header() {
           <h1>Elegant Redux</h1>
         </div>
         <p>
-          <button onClick={handleOpenCartClick}>Cart ({items.length})</button>
+          <button onClick={handleOpenCartClick}>Cart ({itemsQuantity})</button>
         </p>
       </header>
     </>
